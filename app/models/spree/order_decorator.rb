@@ -1,5 +1,5 @@
 Spree::Order.class_eval do
-  has_one :source, class_name: 'Spree::Chimpy::OrderSource'
+  has_one :mailchimp_source, class_name: 'Spree::Chimpy::OrderSource'
 
   state_machine do
     after_transition :to => :complete, :do => :notify_mail_chimp

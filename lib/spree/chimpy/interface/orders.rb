@@ -12,7 +12,7 @@ module Spree::Chimpy
       end
 
       def add(order)
-        if source = order.source
+        if source = order.mailchimp_source
           info = Spree::Chimpy.list.info(source.email_id)
           # use the one from mail chimp or fall back to the order's email
           # happens when this is a new user
@@ -58,7 +58,7 @@ module Spree::Chimpy
 
     private
       def hash(order, expected_email)
-        source = order.source
+        source = order.mailchimp_source
         root_taxon = Spree::Taxon.where(parent_id: nil).take
 
         items = order.line_items.map do |line|
